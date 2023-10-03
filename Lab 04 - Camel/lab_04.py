@@ -43,10 +43,12 @@ def main():
             print("F. look for water")
         print("Q. Quit.")
 
+
         answer = input("What is your choice? ")
         print("")
         if answer == ("q") or answer == ("Q"):
             done = True
+
 
         elif answer == ("f") or answer == ("F"):
             find_water = random.randrange(1, 4)
@@ -60,10 +62,12 @@ def main():
             theyre_closing_in = random.randrange(3, 9)
             distance_the_natives_have_traveled += theyre_closing_in
 
+
         elif answer == ("e") or answer == ("E"):
             print("Miles traveled:  " + str(miles_traveled))
             print("Drinks in canteen:  " + str(water_left))
             print("The natives are " + str(miles_traveled - distance_the_natives_have_traveled) + " miles behind you.")
+
 
         elif answer == ("d") or answer == ("D"):
             camel_tiredness = 0
@@ -78,7 +82,7 @@ def main():
             else:
                 print("the camel is happy and no longer tired")
                 if difficulty == True:
-                    distance_the_natives_have_traveled += 4
+                    distance_the_natives_have_traveled += 1
 
 
         elif answer == ("c") or answer == ("C"):
@@ -106,8 +110,7 @@ def main():
             else:
                 print("you\'ve gone " + str(traveled) + " miles.")
                 if difficulty == True:
-                    distance_the_natives_have_traveled += 4
-
+                    distance_the_natives_have_traveled += 3
 
 
         elif answer == ("b") or answer == ("B"):
@@ -134,7 +137,7 @@ def main():
             else:
                 print("you\'ve gone " + str(traveled) + " miles.")
                 if difficulty == True:
-                    distance_the_natives_have_traveled += 4
+                    distance_the_natives_have_traveled += 3
 
 
         elif answer == ("a") or answer == ("A"):
@@ -144,6 +147,7 @@ def main():
                 thirst = 0
                 water_left -= 1
                 print("you feel refreshed")
+
 
         if thirst >= 6:
             print("You died of thirst!")
