@@ -67,6 +67,8 @@ def main():
             print("Miles traveled:  " + str(miles_traveled))
             print("Drinks in canteen:  " + str(water_left))
             print("The natives are " + str(miles_traveled - distance_the_natives_have_traveled) + " miles behind you.")
+            if difficulty == True:
+                print("the camel seems to be " + str(camel_tiredness + random.randrange(-1, 2)) + " tired")
 
 
         elif answer == ("d") or answer == ("D"):
@@ -101,6 +103,8 @@ def main():
                 camel_tiredness = 0
                 water_left = 3
                 print("you\'ve gone " + str(traveled) + " miles.")
+                if difficulty == True:
+                    distance_the_natives_have_traveled += 3
             elif difficulty == True and event == 1:
                 print("a sandstorm appeared, you and the natives got lost")
                 miles_traveled += (traveled - 13)
@@ -128,6 +132,8 @@ def main():
                 thirst = 0
                 camel_tiredness = 0
                 water_left = 3
+                if difficulty == True:
+                    distance_the_natives_have_traveled += 3
             elif difficulty == True and event == 1:
                 print("a sandstorm appeared, you and the natives got lost")
                 miles_traveled += (traveled - 7)
