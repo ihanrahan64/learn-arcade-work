@@ -79,11 +79,19 @@ def draw_section_6():
 
 
 def draw_section_7():
-    pass
+    for row in range(31):
+        for column in range(row):
+            y = 295 + row * 10
+            x = 1195 - column * 10
+            arcade.draw_rectangle_filled(x, y, 5, 5, arcade.color.WHITE)
 
 
 def draw_section_8():
-    pass
+    for row in range(31):
+        for column in range(row):
+            y = 295 + row * 10
+            x = 605 + column * 10
+            arcade.draw_rectangle_filled(x, y, 5, 5, arcade.color.WHITE)
 
 
 def main():
