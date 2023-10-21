@@ -15,7 +15,7 @@ def main():
 
 # entrance room 0
     room = Room("""you are in an entrance room
-there are a flight of stairs ledding up and a door to the north""", 1, None, None, None, 7, None)
+there are a flight of stairs leading up and a door to the north""", 1, None, None, None, 7, None)
     room_list.append(room)
 
 # dinning hall room 1
