@@ -37,6 +37,7 @@ there are doors leading north, east, and west""", 6, 5, None, 1, None, None)
     room = Room("""you appear to be in a garden with walls on each side
 there is a door leading south""", None, None, 1, None, None, None)
     room_list.append(room)
+
 # bedroom1 room 5
     room = Room("""you appear to be in a bedroom
 there is a door leading west""", None, None, None, 3, None, None)
@@ -63,7 +64,7 @@ there is a door to the south""", None, None, 7, None, None, 4)
 
     while done == False:
         print(room_list[current_room].description)
-        action = input("asks the user what they want to do ")
+        action = input("where would you like to go? ")
         print("")
 
         if action.lower() == "n" or action.lower() == "north":
