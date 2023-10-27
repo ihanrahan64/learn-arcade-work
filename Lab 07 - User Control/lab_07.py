@@ -7,7 +7,7 @@ SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 SPEED = 2
 
-class tree:
+class mouse:
     def __init__(self, x, y, change_in_x, change_in_y):
         self.x = x
         self.y = y
@@ -89,7 +89,7 @@ class tree:
         if 636 <= self.x <= 644 and 0 <= self.y <= 348:
             self.restart()
 
-class mouse:
+class cat:
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -118,8 +118,8 @@ class MyGame(arcade.Window):
 
         self.set_mouse_visible(False)
 
-        self.Tree = tree(35, 550, 0, 0)
-        self.Mouse = mouse(1, 1)
+        self.Mouse = mouse(35, 550, 0, 0)
+        self.Cat = cat(1, 1)
 
     def on_draw(self):
         arcade.start_render()
@@ -138,45 +138,43 @@ class MyGame(arcade.Window):
 
         arcade.draw_triangle_filled(649,286, 669, 320, 679, 286, arcade.color.YELLOW)
 
-        self.Tree.draw()
         self.Mouse.draw()
+        self.Cat.draw()
 
-        print(str(self.Tree.x) + "  " + str(self.Tree.y))
 
     def update(self, delta_time):
-        self.Tree.update()
+        self.Mouse.update()
 
     def on_mouse_motion(self, x, y, dx, dy):
-        self.Mouse.x = x
-        self.Mouse.y = y
+        self.Cat.x = x
+        self.Cat.y = y
 
     def on_mouse_press(self, x, y, button, modifiers):
         self.meow = arcade.load_sound("Cat 2.wav")
         if button == arcade.MOUSE_BUTTON_LEFT:
-            self.Tree.x = 35
-            self.Tree.y = 550
+            self.Mouse.x = 35
+            self.Mouse.y = 550
             arcade.play_sound(self.meow)
 
 
     def on_key_press(self, key, modifiers):
         if key == arcade.key.LEFT:
-            self.Tree.change_in_x += -SPEED
+            self.Mouse.change_in_x += -SPEED
         if key == arcade.key.RIGHT:
-            self.Tree.change_in_x += SPEED
+            self.Mouse.change_in_x += SPEED
         if key == arcade.key.UP:
-            self.Tree.change_in_y += SPEED
+            self.Mouse.change_in_y += SPEED
         if key == arcade.key.DOWN:
-            self.Tree.change_in_y += -SPEED
+            self.Mouse.change_in_y += -SPEED
 
     def on_key_release(self, key, modifiers):
         if key == arcade.key.LEFT or key == arcade.key.RIGHT:
-            self.Tree.change_in_x = 0
+            self.Mouse.change_in_x = 0
         elif key == arcade.key.UP or key == arcade.key.DOWN:
-            self.Tree.change_in_y = 0
+            self.Mouse.change_in_y = 0
 
 def main():
     window = MyGame()
     arcade.run()
-
-
+    
 main()
