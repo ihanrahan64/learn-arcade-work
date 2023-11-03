@@ -1,12 +1,9 @@
 import arcade
 import random
 
-SPRITE_SCALING = 0.5
-
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 SCREEN_TITLE = "lab 8"
-
 SPEED = 4
 
 class Player(arcade.Sprite):
@@ -68,7 +65,7 @@ class MyGame(arcade.Window):
 
         self.score = 0
 
-        self.player_sprite = Player("spaceShips_009.png", SPRITE_SCALING, angle = 180)
+        self.player_sprite = Player("spaceShips_009.png", 0.5, angle = 180)
         self.player_sprite.center_x = 50
         self.player_sprite.center_y = 50
         self.player_list.append(self.player_sprite)
@@ -80,7 +77,7 @@ class MyGame(arcade.Window):
             self.bad_list.append(self.meteor_sprites)
 
         for i in range(15):
-            self.box_sprite = Box("spaceBuilding_001.png", 0.5)
+            self.box_sprite = Box("spaceBuilding_001.png", 0.6)
             self.box_sprite.center_x = random.randrange(0, 800)
             self.box_sprite.center_y = random.randrange(600, 3400)
             self.good_list.append(self.box_sprite)
@@ -97,6 +94,7 @@ class MyGame(arcade.Window):
         if len(self.good_list) == 0:
             arcade.draw_text(("""GAME"""), 90, 350, arcade.color.WHITE, 150)
             arcade.draw_text(("""OVER"""), 90, 200, arcade.color.WHITE, 150)
+
 
     def on_update(self, delta_time):
         self.good_sound = arcade.load_sound("good.wav")
@@ -129,7 +127,6 @@ class MyGame(arcade.Window):
             self.player_sprite.change_x = -SPEED
         elif key == arcade.key.RIGHT:
             self.player_sprite.change_x = SPEED
-
 
 
     def on_key_release(self, key, modifiers):
