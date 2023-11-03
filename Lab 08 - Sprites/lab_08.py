@@ -91,12 +91,18 @@ class MyGame(arcade.Window):
         self.player_list.draw()
         self.bad_list.draw()
         self.good_list.draw()
+
         arcade.draw_text("Score: " + str(self.score), 10, 20, arcade.color.WHITE, 14)
 
+        if len(self.good_list) == 0:
+            arcade.draw_text(("""GAME"""), 90, 350, arcade.color.WHITE, 150)
+            arcade.draw_text(("""OVER"""), 90, 200, arcade.color.WHITE, 150)
+
     def on_update(self, delta_time):
-        self.player_list.update()
-        self.bad_list.update()
-        self.good_list.update()
+        if len(self.good_list) != 0:
+            self.player_list.update()
+            self.bad_list.update()
+            self.good_list.update()
 
         boxs_collected = arcade.check_for_collision_with_list(self.player_sprite, self.good_list)
         for box in boxs_collected:
@@ -107,7 +113,6 @@ class MyGame(arcade.Window):
         for meteors in meteors_hit:
             meteors.remove_from_sprite_lists()
             self.score -= 1
-
 
 
     def on_key_press(self, key, modifiers):
