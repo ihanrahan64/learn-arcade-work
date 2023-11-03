@@ -99,6 +99,9 @@ class MyGame(arcade.Window):
             arcade.draw_text(("""OVER"""), 90, 200, arcade.color.WHITE, 150)
 
     def on_update(self, delta_time):
+        self.good_sound = arcade.load_sound("good.wav")
+        self.bad_sound = arcade.load_sound("bad.wav")
+
         if len(self.good_list) != 0:
             self.player_list.update()
             self.bad_list.update()
@@ -107,11 +110,13 @@ class MyGame(arcade.Window):
         boxs_collected = arcade.check_for_collision_with_list(self.player_sprite, self.good_list)
         for box in boxs_collected:
             box.remove_from_sprite_lists()
+            arcade.play_sound(self.good_sound)
             self.score += 1
 
         meteors_hit = arcade.check_for_collision_with_list(self.player_sprite, self.bad_list)
         for meteors in meteors_hit:
             meteors.remove_from_sprite_lists()
+            arcade.play_sound(self.bad_sound)
             self.score -= 1
 
 
