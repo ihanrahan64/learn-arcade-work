@@ -8,7 +8,8 @@ SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 SCREEN_TITLE = "Lab 9"
 
-MOVEMENT_SPEED = 21
+MOVEMENT_SPEED = 8
+
 
 class MyGame(arcade.Window):
     def __init__(self, width, height, title):
@@ -32,7 +33,6 @@ class MyGame(arcade.Window):
         self.camera_sprites = arcade.Camera(SCREEN_WIDTH, SCREEN_HEIGHT)
         self.camera_gui = arcade.Camera(SCREEN_WIDTH, SCREEN_HEIGHT)
 
-
     def setup(self):
         self.player_list = arcade.SpriteList()
         self.wall_list = arcade.SpriteList()
@@ -54,7 +54,7 @@ class MyGame(arcade.Window):
         for x in range(0, len(self.coins), 2):
             self.coin_sprite = arcade.Sprite("tile_0092.png", 2)
             self.coin_sprite.center_x = self.coins[x]
-            self.coin_sprite.center_y = self.coins[x+1]
+            self.coin_sprite.center_y = self.coins[x + 1]
             self.coin_list.append(self.coin_sprite)
 
         self.ghost_wall = arcade.Sprite("tile_0020.png", 3.16)
@@ -62,7 +62,7 @@ class MyGame(arcade.Window):
         self.row(-800, 2401, 0)
         self.row(-800, 2401, 1800)
         self.column(0, 1801, 2400)
-        self.column(0,1801, -800)
+        self.column(0, 1801, -800)
 
         self.row(0, 556, 375)
         self.row(-800, -520, 350)
@@ -71,19 +71,19 @@ class MyGame(arcade.Window):
         self.row(800, 951, 900)
         self.row(-200, 2001, 1200)
         self.row(800, 2001, 350)
-        self.row(1400,2001, 1500)
+        self.row(1400, 2001, 1500)
         self.row(300, 1100, 1500)
 
-        self.column(25,351, 550)
-        self.column(0,1201,-250)
-        self.column(350, 1201,-520)
-        self.column(600,801, 0)
+        self.column(25, 351, 550)
+        self.column(0, 1201, -250)
+        self.column(350, 1201, -520)
+        self.column(600, 801, 0)
         self.column(400, 601, 800)
         self.column(600, 901, 950)
         self.column(600, 1201, 2000)
-        self.column(1200,1501, 1400)
-        self.column(1200,1501, 300)
-        self.column(350,601, 2000)
+        self.column(1200, 1501, 1400)
+        self.column(1200, 1501, 300)
+        self.column(350, 601, 2000)
 
         self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite,
                                                          self.wall_list)
@@ -91,10 +91,9 @@ class MyGame(arcade.Window):
     def floor(self):
         for x in range(-800, 2401, 72):
             for y in range(0, 1801, 324):
-                arcade.draw_lrtb_rectangle_filled(x, x + 69,y+321,y,(38,27,15))
+                arcade.draw_lrtb_rectangle_filled(x, x + 69, y + 321, y, (38, 27, 15))
 
-
-    def row(self,start_x, end_x, y):
+    def row(self, start_x, end_x, y):
         self.walls = ["tile_0019.png", "tile_0040.png", "tile_0002.png"]
         for x in range(start_x, end_x, 50):
 
@@ -106,14 +105,13 @@ class MyGame(arcade.Window):
                 block = 1
 
             if y == 0:
-                wall = arcade.Sprite(self.walls[block], 3.16, flipped_vertically = True)
+                wall = arcade.Sprite(self.walls[block], 3.16, flipped_vertically=True)
 
             else:
-                wall = arcade.Sprite(self.walls[block],3.16)
+                wall = arcade.Sprite(self.walls[block], 3.16)
             wall.center_x = x
             wall.center_y = y
             self.wall_list.append(wall)
-
 
     def column(self, start_y, end_y, x):
         self.walls = ["tile_0019.png", "tile_0040.png", "tile_0002.png"]
@@ -132,15 +130,14 @@ class MyGame(arcade.Window):
                     wall.center_y = y
 
                 if x == 2400:
-                        wall = arcade.Sprite(self.walls[block], 3.16, angle=-90)
-                        wall.center_x = x
-                        wall.center_y = y
+                    wall = arcade.Sprite(self.walls[block], 3.16, angle=-90)
+                    wall.center_x = x
+                    wall.center_y = y
             else:
                 wall = arcade.Sprite(self.walls[block], 3.16)
                 wall.center_x = x
                 wall.center_y = y
             self.wall_list.append(wall)
-
 
     def on_draw(self):
         self.clear()
@@ -153,11 +150,10 @@ class MyGame(arcade.Window):
         self.chest_list.draw()
         self.coin_list.draw()
 
-        for x in range (2):
-            self.ghost_wall.center_x = 850+50*x
+        for x in range(2):
+            self.ghost_wall.center_x = 850 + 50 * x
             self.ghost_wall.center_y = 600
             self.ghost_wall.draw()
-
 
         self.camera_gui.use()
 
@@ -185,7 +181,8 @@ class MyGame(arcade.Window):
         self.good_sound = arcade.load_sound("good - Copy.wav")
 
         if ((int(self.camera_sprites.position[0]) % 800 <= 9 or int(self.camera_sprites.position[0]) % 800 >= 791)
-                and (int(self.camera_sprites.position[1]) % 600 <= 9 or int(self.camera_sprites.position[1]) % 600 >= 591)):
+                and (int(self.camera_sprites.position[1]) % 600 <= 9 or int(
+                    self.camera_sprites.position[1]) % 600 >= 591)):
             self.physics_engine.update()
 
         self.scroll_to_player()
@@ -201,7 +198,6 @@ class MyGame(arcade.Window):
             coin.remove_from_sprite_lists()
             arcade.play_sound(self.good_sound)
             self.score += 1
-            
 
     def scroll_to_player(self):
         if self.player_sprite.center_x < self.cam_x:
