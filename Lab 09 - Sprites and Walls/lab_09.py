@@ -6,17 +6,12 @@ SPRITE_SCALING = 0.5
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
-SCREEN_TITLE = "Sprite Move with Walls Example"
+SCREEN_TITLE = "Lab 9"
 
 MOVEMENT_SPEED = 21
 
 class MyGame(arcade.Window):
-    """ Main application class. """
-
     def __init__(self, width, height, title):
-        """
-        Initializer
-        """
         super().__init__(width, height, title)
 
         self.cam_x = 0
@@ -39,15 +34,11 @@ class MyGame(arcade.Window):
 
 
     def setup(self):
-        """ Set up the game and initialize the variables. """
-
-        # Sprite lists
         self.player_list = arcade.SpriteList()
         self.wall_list = arcade.SpriteList()
         self.chest_list = arcade.SpriteList()
         self.coin_list = arcade.SpriteList()
 
-        # Set up the player
         self.player_sprite = arcade.Sprite(":resources:images/animated_characters/female_person/femalePerson_idle.png",
                                            SPRITE_SCALING)
         self.player_sprite.center_x = 50
@@ -68,7 +59,6 @@ class MyGame(arcade.Window):
 
         self.ghost_wall = arcade.Sprite("tile_0020.png", 3.16)
 
-
         self.row(-800, 2401, 0)
         self.row(-800, 2401, 1800)
         self.column(0, 1801, 2400)
@@ -84,7 +74,6 @@ class MyGame(arcade.Window):
         self.row(1400,2001, 1500)
         self.row(300, 1100, 1500)
 
-
         self.column(25,351, 550)
         self.column(0,1201,-250)
         self.column(350, 1201,-520)
@@ -95,8 +84,6 @@ class MyGame(arcade.Window):
         self.column(1200,1501, 1400)
         self.column(1200,1501, 300)
         self.column(350,601, 2000)
-
-
 
         self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite,
                                                          self.wall_list)
@@ -110,6 +97,7 @@ class MyGame(arcade.Window):
     def row(self,start_x, end_x, y):
         self.walls = ["tile_0019.png", "tile_0040.png", "tile_0002.png"]
         for x in range(start_x, end_x, 50):
+
             if y == 0 or y == 1800:
                 block = 2
             elif x % 7 == 0:
@@ -119,11 +107,13 @@ class MyGame(arcade.Window):
 
             if y == 0:
                 wall = arcade.Sprite(self.walls[block], 3.16, flipped_vertically = True)
+
             else:
                 wall = arcade.Sprite(self.walls[block],3.16)
             wall.center_x = x
             wall.center_y = y
             self.wall_list.append(wall)
+
 
     def column(self, start_y, end_y, x):
         self.walls = ["tile_0019.png", "tile_0040.png", "tile_0002.png"]
@@ -211,9 +201,9 @@ class MyGame(arcade.Window):
             coin.remove_from_sprite_lists()
             arcade.play_sound(self.good_sound)
             self.score += 1
+            
 
     def scroll_to_player(self):
-
         if self.player_sprite.center_x < self.cam_x:
             self.cam_x -= 800
 
@@ -226,10 +216,7 @@ class MyGame(arcade.Window):
         if self.player_sprite.center_y > self.cam_y + 600:
             self.cam_y += 600
 
-
         position = Vec2(self.cam_x, self.cam_y)
-
-
         self.camera_sprites.move_to(position, 0.125)
 
 
