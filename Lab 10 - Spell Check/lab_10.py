@@ -66,7 +66,3 @@ def main():
                 print("Line " + str(line_number) + " possible misspelled word: " + word)
     alice.close()
 main()
-
-
-
-
